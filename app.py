@@ -15,7 +15,13 @@ import stripe
 
 app = Flask(__name__)
 app.config['SECRET_KEY'] = os.environ.get('SECRET_KEY', 'your_secret_key_here')
-app.config['SQLALCHEMY_DATABASE_URI'] = os.environ.get('DATABASE_URL', 'sqlite:///marketplace.db')
+
+# Database configuration - handle both SQLite and PostgreSQL
+database_url = os.environ.get('DATABASE_URL', 'sqlite:///marketplace.db')
+# Fix PostgreSQL URI if needed (Railway uses postgres://, but SQLAlchemy 2.0+ needs postgresql://)
+if database_url.startswith('postgres://'):
+    database_url = database_url.replace('postgres://', 'postgresql://', 1)
+app.config['SQLALCHEMY_DATABASE_URI'] = database_url
 app.config['UPLOAD_FOLDER'] = 'static/uploads'
 
 os.makedirs(app.config['UPLOAD_FOLDER'], exist_ok=True)
