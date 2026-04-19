@@ -1,0 +1,105 @@
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+}
+
+header {
+    background-color: #333;
+    color: white;
+    padding: 1rem;
+    text-align: center;
+}
+
+nav a {
+    color: white;
+    margin: 0 1rem;
+    text-decoration: none;
+}
+
+main {
+    padding: 2rem;
+}
+
+.products {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.product {
+    border: 1px solid #ddd;
+    margin: 1rem;
+    padding: 1rem;
+    width: 200px;
+}
+
+.product img {
+    max-width: 100%;
+    height: auto;
+}
+
+.flashes {
+    list-style: none;
+    padding: 0;
+}
+
+.flashes li {
+    background-color: #f0f0f0;
+    padding: 0.5rem;
+    margin-bottom: 0.5rem;
+}
+
+form {
+    display: flex;
+    flex-direction: column;
+    max-width: 300px;
+}
+
+form label {
+    margin-top: 1rem;
+}
+
+form input, form select, form textarea, form button {
+    margin-top: 0.5rem;
+    padding: 0.5rem;
+}
+
+.product-detail {
+    margin-bottom: 2rem;
+}
+
+.review {
+    border: 1px solid #eee;
+    padding: 1rem;
+    margin-bottom: 1rem;
+}
+
+.message {
+    padding: 0.5rem;
+    margin: 0.5rem 0;
+}
+
+.sent {
+    text-align: right;
+}
+
+.received {
+    text-align: left;
+}
+
+/* Mobile responsive */
+@media (max-width: 600px) {
+    nav a {
+        display: block;
+        margin: 0.5rem 0;
+    }
+    .products {
+        flex-direction: column;
+    }
+    .product {
+        width: auto;
+    }
+    form {
+        max-width: none;
+    }
+}

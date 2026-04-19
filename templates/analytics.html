@@ -1,0 +1,38 @@
+{% extends "base.html" %}
+
+{% block content %}
+<h2>Seller Analytics</h2>
+<p>Total Sales: ${{ "%.2f"|format(total_sales) }}</p>
+<p>Total Orders: {{ total_orders }}</p>
+<h3>Sales Over Last 7 Days</h3>
+<canvas id="salesChart" width="400" height="200"></canvas>
+<h3>Products</h3>
+<ul>
+    {% for product in products %}
+    <li>{{ product.title }} - Views: N/A - Sales: {{ product.reviews|length }}</li>
+    {% endfor %}
+</ul>
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<script>
+    var ctx = document.getElementById('salesChart').getContext('2d');
+    var salesChart = new Chart(ctx, {
+        type: 'line',
+        data: {
+            labels: {{ labels | tojson }},
+            datasets: [{
+                label: 'Sales ($)',
+                data: {{ data | tojson }},
+                borderColor: 'rgba(75, 192, 192, 1)',
+                backgroundColor: 'rgba(75, 192, 192, 0.2)',
+            }]
+        },
+        options: {
+            scales: {
+                y: {
+                    beginAtZero: true
+                }
+            }
+        }
+    });
+</script>
+{% endblock %}

@@ -1,0 +1,16 @@
+{% extends "base.html" %}
+
+{% block content %}
+<h2>Buy {{ product.title }}</h2>
+<p>{{ product.description }}</p>
+<p>Price: ${{ product.price }}</p>
+<form method="post">
+    <label>Quantity:</label>
+    <input type="number" name="quantity" value="1" min="1" max="{{ product.stock }}">
+    <button type="submit">Proceed to Payment</button>
+</form>
+<script src="https://js.stripe.com/v3/"></script>
+<script>
+    // Optional: Add client-side validation or custom checkout
+</script>
+{% endblock %}

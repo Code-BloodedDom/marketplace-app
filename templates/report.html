@@ -1,0 +1,11 @@
+{% extends "base.html" %}
+
+{% block content %}
+<h2>Report Product</h2>
+<p>Reporting: {{ product.title }}</p>
+<form method="post">
+    <label>Reason:</label>
+    <textarea name="reason" required></textarea>
+    <button type="submit">Submit Report</button>
+</form>
+{% endblock %}

@@ -1,0 +1,28 @@
+{% extends "base.html" %}
+
+{% block content %}
+<h2>My Orders</h2>
+{% if current_user.is_seller %}
+<h3>Sales</h3>
+{% else %}
+<h3>Purchases</h3>
+{% endif %}
+<ul>
+    {% for order in orders %}
+    <li>
+        Product: {{ order.product.title }} - Quantity: {{ order.quantity }} - Total: ${{ order.total_price }} - Status: {{ order.status }}
+        {% if current_user.is_seller %}
+        <form method="post" action="{{ url_for('update_order_status', order_id=order.id) }}" style="display:inline;">
+            <select name="status">
+                <option value="pending" {% if order.status == 'pending' %}selected{% endif %}>Pending</option>
+                <option value="paid" {% if order.status == 'paid' %}selected{% endif %}>Paid</option>
+                <option value="shipped" {% if order.status == 'shipped' %}selected{% endif %}>Shipped</option>
+                <option value="delivered" {% if order.status == 'delivered' %}selected{% endif %}>Delivered</option>
+            </select>
+            <button type="submit">Update</button>
+        </form>
+        {% endif %}
+    </li>
+    {% endfor %}
+</ul>
+{% endblock %}
